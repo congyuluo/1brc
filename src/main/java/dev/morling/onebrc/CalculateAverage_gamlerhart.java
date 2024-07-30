@@ -277,15 +277,15 @@ public class CalculateAverage_gamlerhart {
 
         public void fillMerge(MemorySegment file, TreeMap<String, ResultRow> treeMap) {
             for (int i = 0; i < keys.length; i++) {
-                var ji = i;
-                long keyE = keys[ji];
-                if (keyE != 0) {
-                    long keyPos = (keyE & MASK_POS) >> SHIFT_POS;
-                    int keyLen = (int) (keyE & MASK_LEN);
+                var index = i;
+                long keyElement = keys[index];
+                if (keyElement != 0) {
+                    long keyPosition = (keyElement & MASK_POS) >> SHIFT_POS;
+                    int keyLen = (int) (keyElement & MASK_LEN);
                     byte[] keyBytes = new byte[keyLen];
-                    MemorySegment.copy(file, JAVA_BYTE, keyPos, keyBytes, 0, keyLen);
+                    MemorySegment.copy(file, JAVA_BYTE, keyPosition, keyBytes, 0, keyLen);
                     var key = new String(keyBytes);
-                    var vE = values[ji];
+                    var vE = values[index];
                     var min = vE.min;
                     var max = vE.max;
                     var sum = vE.sum;
